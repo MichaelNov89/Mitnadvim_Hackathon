@@ -4,7 +4,8 @@ import datetime
 class Request:
 
     #creating a request for help
-    def __init__(self, user_id, date, time, city, number_of_participants):
+    def __init__(self,event_id, user_id, date, time, city, number_of_participants):
+        self.event_id = event_id
         self.user_id = user_id
         self.date = date
         self.time = time
@@ -57,7 +58,9 @@ class Request:
 
     #add volunteer to the request
     def add_volunteer(self, user_id):
-        self.volunteer_list.append(user_id)
+        if not self.is_full:
+            if self.volunteer_list.index(user_id) == 0:
+                self.volunteer_list.append(user_id)
 
         if len(self.volunteer_list) == self.number_of_participants:
             self.is_full = True
