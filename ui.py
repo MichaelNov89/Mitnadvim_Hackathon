@@ -66,9 +66,9 @@ def login_screen():
     entry1.place(x=130, y=200)
     user_name=click(entry1)
 
-    login_button = tk.Button(login_frame, text="Login",command=lambda : fire.sign_in(user_name))
+    login_button = tk.Button(login_frame, text="Login",command=lambda : if_login(user_name,login_frame))
     login_button.place(x=110, y=230)
-    creat_user = tk.Button(login_frame, text="signup", command=lambda: if_login(user_name,login_frame))
+    creat_user = tk.Button(login_frame, text="signup", command=lambda: signup_screen(login_frame))
     creat_user.place(x=160, y=230)
 
 
@@ -80,6 +80,7 @@ def put_logo(frame):
 
 
 def if_login(username_input,frame):
+    print(username_input)
     if fire.sign_in(username_input):
         frame.destroy()
         creat_homepage()
