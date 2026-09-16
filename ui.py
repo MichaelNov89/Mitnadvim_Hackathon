@@ -1,33 +1,73 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-#======INITIATE SCREEN======
+
 root=tk.Tk(screenName="עושים טוב",baseName="עושים טוב",className="Tk",useTk=True)
 root.title("עושים טוב")
-root.configure(bg="#FFD6E8")
+root.configure(bg="#85B6C0")
 root.geometry("350x600")
 photo = Image.open("logo.png")
 resized_image = photo.resize((350, 300), Image.Resampling.LANCZOS)
-logo=tk_image = ImageTk.PhotoImage(resized_image)
-LOGO_LABEL=tk.Label(root, image=logo,bg="#FFD6E8")
-LOGO_LABEL.place(x=0,y=300)
-
-#========FIRST SCREEN======
-title_label=tk.Label(root, text="Login to profile:", font=("Courier", 18),bg="#FFD6E8")
-title_label.place(x=50,y=20)
-
-username_label=tk.Label(root, text="Username:", font=("Ariel", 10),bg="#FFD6E8")
-username_label.place(x=50,y=200)
-
-entry1 = tk.Entry(root)
-entry1.place(x=130,y=200)
-
-login_button=tk.Button(root, text="Login")
-login_button.place(x=110,y=230)
-dont_have_user=tk.Label(root, text="Don't Have A user?", font=("Ariel", 10),bg="#FFD6E8")
-creat_user=tk.Button(root, text="signup")
-creat_user.place(x=160,y=230)
+logo = ImageTk.PhotoImage(resized_image)
 
 
+def signup_screen(login_frame):
+    login_frame.destroy()
+    signup_frame = tk.Frame(root, bg="#85B6C0")
+    signup_frame.pack(fill="both", expand=True)
+    title_label_signup = tk.Label(signup_frame, text="open a profile:", font=("Courier", 18), bg="#85B6C0")
+    title_label_signup.place(x=50, y=20)
+    title_label_signup.place(x=50, y=20)
+    put_logo(signup_frame)
+
+    new_username_label = tk.Label(signup_frame, text="enter a username:", bg="#85B6C0",font=("Ariel", 10),)
+    new_username_label.place(x=30, y=250)
+    mail_label= tk.Label(signup_frame, text="enter your email:", bg="#85B6C0",font=("Ariel", 10),)
+    mail_label.place(x=30, y=200)
+
+    fill_mail=tk.Entry(signup_frame)
+    fill_user_name= tk.Entry(signup_frame)
+
+    fill_mail.place(x=150, y=200)
+    fill_user_name.place(x=150, y=250)
+    open_account_button=tk.Button(signup_frame ,text="open account",font=("Ariel", 10))
+    open_account_button.place(x=50,y=280)
+    have_an_account=tk.Button(signup_frame, text="already have an account? login", font=("Ariel", 10), command=lambda : back_to_login(
+        signup_frame))
+    have_an_account.place(x=160,y=280)
+
+def back_to_login(frame):
+    frame.destroy()
+    login_screen()
+
+
+def login_screen():
+    login_frame = tk.Frame(root, bg="#85B6C0")
+    login_frame.pack(fill="both", expand=True)
+    title_label = tk.Label(login_frame, text="Login to profile:", font=("Courier", 18), bg="#85B6C0")
+    title_label.place(x=50, y=20)
+    put_logo(login_frame)
+    username_label = tk.Label(login_frame, text="Username:", font=("Ariel", 10), bg="#85B6C0")
+    username_label.place(x=50, y=200)
+
+    entry1 = tk.Entry(login_frame)
+    entry1.place(x=130, y=200)
+
+    login_button = tk.Button(login_frame, text="Login")
+    login_button.place(x=110, y=230)
+    creat_user = tk.Button(login_frame, text="signup", command=lambda: signup_screen(login_frame))
+    creat_user.place(x=160, y=230)
+
+
+
+def put_logo(frame):
+    logo_label = tk.Label(frame, image=logo, bg="#85B6C0")
+    logo_label.place(x=0, y=300)
+
+
+
+
+
+login_screen()
 root.mainloop()
 
 
