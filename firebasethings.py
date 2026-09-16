@@ -96,23 +96,20 @@ def sign_up(username,email):
         new_user = User(username, username, email)
         add_user_to_database(new_user)
         curr_login=new_user.uid
+        return True
 
     else:
         print("Username already in use")
+        return False
 
 
 # create a req using from the curr loggin
-def create_request():
+def create_request(req_name,req_desc,req_people,req_date,req_city,req_time):
     user_id = curr_login
     curr_user = get_user(curr_login)
     print(curr_user)
     event_id = user_id + str(len(curr_user["created_req_list"])+1)
-    req_name = input("Enter your request name: ")
-    req_desc = input("Enter your request description: ")
-    req_people = int(input("Enter your request people: "))
-    req_date = input("Enter your request date: ")
-    req_city = input("Enter your request city: ")
-    req_time = input("Enter your request time: ")
+
     new_req = Request(req_name, req_desc,event_id,user_id, req_time, req_date, req_city,req_people)
     add_request_to_database(new_req)
 
@@ -122,9 +119,11 @@ def sign_in(username):
     if check_in_collection().count(username) != 0:
         print("Successfully logged in")
         curr_login = username
+        return True
 
     else:
         print("No user")
+        return False
 
 
 def accept_or_decline_reqs(accepted,req_id):
