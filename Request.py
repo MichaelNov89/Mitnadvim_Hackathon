@@ -4,64 +4,18 @@ import datetime
 class Request:
 
     #creating a request for help
-    def __init__(self,event_id, user_id, date, time, city, number_of_participants, info):
+    def __init__(self,req_name,req_desc,event_id, user_id, date, time, city, number_of_participants):
+        self.req_name=req_name
+        self.req_desc=req_desc
         self.event_id = event_id
-        self.user_id = user_id
+        self.creator_id = user_id
         self.date = date
         self.time = time
         self.city = city
         self.number_of_participants = number_of_participants
-        self.info = info
         self.status = "Before event"
         self.volunteer_list = []
         self.is_full = False
-
-    #getters
-    def get_user_id(self):
-        return self.user_id
-
-    def get_date(self):
-        return self.date.strftime("%Y-%m-%d")
-
-    def get_time(self):
-        return self.time.strftime("%H:%M")
-
-    def get_city(self):
-        return self.city
-
-    def get_number_of_participants(self):
-        return self.number_of_participants
-
-    def get_info(self):
-        return self.info
-
-    def get_volunteer_list(self):
-        return self.volunteer_list
-
-    def get_is_full(self):
-        return self.is_full
-
-    #setters
-    def set_status(self, status):
-        self.status = status
-
-    def set_user_id(self, user_id):
-        self.user_id = user_id
-
-    def set_date(self, date):
-        self.date = date.strftime("%Y-%m-%d")
-
-    def set_time(self, time):
-        self.time = time.strftime("%H:%M")
-
-    def set_city(self, city):
-        self.city = city
-
-    def set_number_of_participants(self, number_of_participants):
-        self.number_of_participants = number_of_participants
-
-    def set_info(self, info):
-        self.info = info
 
     #add volunteer to the request
     def add_volunteer(self, user_id):
@@ -82,8 +36,8 @@ class Request:
     #change the status of the event
     def change_status (self):
         date_now = datetime.datetime.now()
-        event_date = self.get_date()
-        event_time = self.get_time()
+        event_date = self.date()
+        event_time = self.time()
         if event_date.strftime("%Y-%m-%d") < date_now.strftime("%Y-%m-%d"):
             self.status = "Before event"
         elif event_date.strftime("%Y-%m-%d") == date_now.strftime("%Y-%m-%d"):
@@ -95,4 +49,3 @@ class Request:
                 self.status = "After event"
         elif event_date.strftime("%Y-%m-%d") > date_now.strftime("%Y-%m-%d"):
             self.status = "After event"
-
