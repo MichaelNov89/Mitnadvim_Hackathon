@@ -10,7 +10,16 @@ resized_image = photo.resize((350, 300), Image.Resampling.LANCZOS)
 logo = ImageTk.PhotoImage(resized_image)
 
 def creat_homepage():
-    pass
+    homepage_label = tk.Label(root, text="HomePage", font=("Helvetica", 10), bg="#85B6C0")
+    homepage_label.place(x=140, y=100)
+    request_button = tk.Button(root, text="request")
+    request_button.place(x=145, y=300)
+
+    swipe_button = tk.Button(root, text="swipe")
+    swipe_button.place(x=145, y=400)
+
+    profile_button = tk.Button(root, text="profile")
+    profile_button.place(x=145, y=500)
 
 
 def click(entry):
