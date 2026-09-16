@@ -27,9 +27,9 @@ def signup_screen(login_frame):
     title_label_signup.place(x=50, y=20)
     put_logo(signup_frame)
 
-    new_username_label = tk.Label(signup_frame, text="enter a username:", bg="#85B6C0",font=("Ariel", 10),)
+    new_username_label = tk.Label(signup_frame, text="enter a username:", bg="#85B6C0",font=("Ariel", 10))
     new_username_label.place(x=30, y=250)
-    mail_label= tk.Label(signup_frame, text="enter your email:", bg="#85B6C0",font=("Ariel", 10),)
+    mail_label= tk.Label(signup_frame, text="enter your email:", bg="#85B6C0",font=("Ariel", 10))
     mail_label.place(x=30, y=200)
 
     fill_mail=tk.Entry(signup_frame)
@@ -37,11 +37,9 @@ def signup_screen(login_frame):
 
     fill_mail.place(x=150, y=200)
     fill_user_name.place(x=150, y=250)
-    username_input = click(fill_user_name)
-    mail_input= click(fill_mail)
-    open_account_button=tk.Button(signup_frame ,text="open account",font=("Ariel", 10),command=lambda: if_user_exist(
-        username_input,mail_input,signup_frame
-    ))
+
+    open_account_button=tk.Button(signup_frame ,text="open account",font=("Ariel", 10),command=lambda: if_user_exist(click(fill_user_name),click(fill_mail),signup_frame))
+
 
     open_account_button.place(x=50,y=280)
     have_an_account=tk.Button(signup_frame, text="already have an account? login", font=("Ariel", 10), command=lambda : back_to_login(
@@ -64,9 +62,9 @@ def login_screen():
 
     entry1 = tk.Entry(login_frame)
     entry1.place(x=130, y=200)
-    user_name=click(entry1)
 
-    login_button = tk.Button(login_frame, text="Login",command=lambda : if_login(user_name,login_frame))
+
+    login_button = tk.Button(login_frame, text="Login",command=lambda : if_login(click(entry1),login_frame))
     login_button.place(x=110, y=230)
     creat_user = tk.Button(login_frame, text="signup", command=lambda: signup_screen(login_frame))
     creat_user.place(x=160, y=230)
